@@ -9,6 +9,9 @@ from dotenv import load_dotenv
 import os
 from loguru import logger
 
+# Import routes
+from routes import message, store, websocket
+
 # Load environment variables
 load_dotenv()
 
@@ -38,6 +41,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Register routes
+app.include_router(message.router)
+app.include_router(store.router)
+app.include_router(websocket.router)
 
 
 @app.get("/")
