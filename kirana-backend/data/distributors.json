@@ -1,0 +1,114 @@
+{
+  "distributors": [
+    {
+      "id": "patel_wholesale",
+      "name": "Patel Wholesale",
+      "contact_person": "Ramesh Patel",
+      "phone": "+91-98765-43210",
+      "upi_id": "patel.wholesale@upi",
+      "address": "Shop 45, Wholesale Market, Indore",
+      "delivery_days": 1,
+      "minimum_order": 500,
+      "price_tier": "competitive",
+      "categories": ["all"],
+      "payment_terms": "Cash on Delivery, UPI",
+      "reliability_score": 4.5,
+      "products": {
+        "maggi_70g": 11.5,
+        "atta_5kg": 220.0,
+        "toor_dal_1kg": 135.0,
+        "rice_5kg": 410.0,
+        "surf_excel_1kg": 160.0,
+        "parle_g_200g": 17.0,
+        "britannia_bread": 30.0,
+        "amul_milk_1l": 57.0,
+        "fortune_oil_1l": 165.0,
+        "good_day_100g": 26.0,
+        "pepsi_600ml": 33.0,
+        "lays_52g": 16.0,
+        "sabudana_500g": 50.0,
+        "peanuts_500g": 65.0,
+        "sendha_namak_200g": 30.0,
+        "coconut_fresh": 35.0,
+        "banana_dozen": 45.0,
+        "incense_sticks": 28.0,
+        "diya_pack": 25.0,
+        "chana_dal_500g": 60.0
+      }
+    },
+    {
+      "id": "metro_cash_carry",
+      "name": "Metro Cash & Carry",
+      "contact_person": "Store Manager",
+      "phone": "+91-98765-43211",
+      "upi_id": "metro.cashcarry@upi",
+      "address": "Metro Cash & Carry, Ring Road, Indore",
+      "delivery_days": 0,
+      "minimum_order": 1000,
+      "price_tier": "bulk_cheapest",
+      "categories": ["staples", "household", "snacks", "beverages"],
+      "payment_terms": "Cash, UPI, Credit (30 days for registered)",
+      "reliability_score": 4.8,
+      "products": {
+        "maggi_70g": 11.0,
+        "atta_5kg": 215.0,
+        "toor_dal_1kg": 132.0,
+        "rice_5kg": 405.0,
+        "surf_excel_1kg": 155.0,
+        "parle_g_200g": 16.5,
+        "britannia_bread": 29.0,
+        "fortune_oil_1l": 162.0,
+        "good_day_100g": 25.0,
+        "pepsi_600ml": 32.0,
+        "lays_52g": 15.5,
+        "chana_dal_500g": 58.0
+      }
+    },
+    {
+      "id": "fresh_fruits_sabzi",
+      "name": "Gupta Fresh Fruits & Sabzi",
+      "contact_person": "Suresh Gupta",
+      "phone": "+91-98765-43212",
+      "upi_id": "gupta.fruits@paytm",
+      "address": "Sabzi Mandi, Indore",
+      "delivery_days": 0,
+      "minimum_order": 200,
+      "price_tier": "fresh_produce_specialist",
+      "categories": ["fruits", "vegetables"],
+      "payment_terms": "Cash, UPI",
+      "reliability_score": 4.2,
+      "products": {
+        "coconut_fresh": 32.0,
+        "banana_dozen": 42.0,
+        "sabudana_500g": 46.0,
+        "peanuts_500g": 62.0
+      }
+    },
+    {
+      "id": "religious_supplies",
+      "name": "Shri Ram Pooja Bhandar",
+      "contact_person": "Pandit Sharma",
+      "phone": "+91-98765-43213",
+      "upi_id": "shriram.pooja@phonepe",
+      "address": "Temple Road, Indore",
+      "delivery_days": 1,
+      "minimum_order": 300,
+      "price_tier": "specialty",
+      "categories": ["pooja_items", "fasting_food"],
+      "payment_terms": "Cash, UPI",
+      "reliability_score": 4.3,
+      "products": {
+        "incense_sticks": 26.0,
+        "diya_pack": 22.0,
+        "sendha_namak_200g": 28.0,
+        "sabudana_500g": 48.0,
+        "peanuts_500g": 64.0
+      }
+    }
+  ],
+  "price_comparison_notes": {
+    "general_rule": "Metro is cheapest for bulk FMCG, Patel is reliable all-rounder, Gupta best for fresh produce, Religious Supplies for pooja items",
+    "savings_potential": "Smart multi-distributor ordering can save 5-15% on total procurement cost",
+    "delivery_strategy": "Metro same-day for urgent bulk, Patel next-day for regular, Gupta morning for fresh items"
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "store_id": "sharma_general_store",
+  "name": "Sharma General Store",
+  "owner_name": "Rajesh Sharma",
+  "phone": "+91-98765-12345",
+  "language": "hinglish",
+  "city": "Indore",
+  "state": "Madhya Pradesh",
+  "pincode": "452001",
+  "address": "Shop 12, Gandhi Market, Indore",
+  "store_type": "neighborhood_kirana",
+  "established_year": 2010,
+  "avg_monthly_revenue": 180000,
+
+  "current_inventory": {
+    "maggi_70g": {
+      "current_stock": 3,
+      "today_sold": 8,
+      "today_received": 0,
+      "today_revenue": 112.0,
+      "status": "critical"
+    },
+    "atta_5kg": {
+      "current_stock": 4,
+      "today_sold": 2,
+      "today_received": 0,
+      "today_revenue": 480.0,
+      "status": "warning"
+    },
+    "toor_dal_1kg": {
+      "current_stock": 12,
+      "today_sold": 3,
+      "today_received": 0,
+      "today_revenue": 450.0,
+      "status": "healthy"
+    },
+    "rice_5kg": {
+      "current_stock": 6,
+      "today_sold": 1,
+      "today_received": 0,
+      "today_revenue": 450.0,
+      "status": "healthy"
+    },
+    "surf_excel_1kg": {
+      "current_stock": 2,
+      "today_sold": 4,
+      "today_received": 0,
+      "today_revenue": 720.0,
+      "status": "critical"
+    },
+    "parle_g_200g": {
+      "current_stock": 18,
+      "today_sold": 10,
+      "today_received": 0,
+      "today_revenue": 200.0,
+      "status": "healthy"
+    },
+    "britannia_bread": {
+      "current_stock": 8,
+      "today_sold": 5,
+      "today_received": 12,
+      "today_revenue": 175.0,
+      "status": "healthy"
+    },
+    "amul_milk_1l": {
+      "current_stock": 14,
+      "today_sold": 8,
+      "today_received": 20,
+      "today_revenue": 496.0,
+      "status": "healthy"
+    },
+    "fortune_oil_1l": {
+      "current_stock": 5,
+      "today_sold": 2,
+      "today_received": 0,
+      "today_revenue": 360.0,
+      "status": "healthy"
+    },
+    "good_day_100g": {
+      "current_stock": 10,
+      "today_sold": 6,
+      "today_received": 0,
+      "today_revenue": 180.0,
+      "status": "healthy"
+    },
+    "pepsi_600ml": {
+      "current_stock": 10,
+      "today_sold": 7,
+      "today_received": 0,
+      "today_revenue": 280.0,
+      "status": "healthy"
+    },
+    "lays_52g": {
+      "current_stock": 15,
+      "today_sold": 8,
+      "today_received": 0,
+      "today_revenue": 160.0,
+      "status": "healthy"
+    },
+    "sabudana_500g": {
+      "current_stock": 12,
+      "today_sold": 2,
+      "today_received": 0,
+      "today_revenue": 130.0,
+      "status": "warning"
+    },
+    "peanuts_500g": {
+      "current_stock": 8,
+      "today_sold": 2,
+      "today_received": 0,
+      "today_revenue": 160.0,
+      "status": "healthy"
+    },
+    "sendha_namak_200g": {
+      "current_stock": 5,
+      "today_sold": 1,
+      "today_received": 0,
+      "today_revenue": 40.0,
+      "status": "healthy"
+    },
+    "coconut_fresh": {
+      "current_stock": 8,
+      "today_sold": 3,
+      "today_received": 15,
+      "today_revenue": 150.0,
+      "status": "healthy"
+    },
+    "banana_dozen": {
+      "current_stock": 6,
+      "today_sold": 4,
+      "today_received": 10,
+      "today_revenue": 240.0,
+      "status": "healthy"
+    },
+    "incense_sticks": {
+      "current_stock": 10,
+      "today_sold": 3,
+      "today_received": 0,
+      "today_revenue": 105.0,
+      "status": "healthy"
+    },
+    "diya_pack": {
+      "current_stock": 3,
+      "today_sold": 1,
+      "today_received": 0,
+      "today_revenue": 40.0,
+      "status": "healthy"
+    },
+    "chana_dal_500g": {
+      "current_stock": 9,
+      "today_sold": 2,
+      "today_received": 0,
+      "today_revenue": 140.0,
+      "status": "healthy"
+    }
+  },
+
+  "udhaar_ledger": {
+    "Sharma ji": {
+      "total_outstanding": 2340.0,
+      "transactions_count": 5,
+      "last_transaction_date": "2026-02-14",
+      "transactions": [
+        {
+          "date": "2026-02-14",
+          "amount": 160.0,
+          "products": ["Maggi", "Atta", "Surf Excel"],
+          "type": "credit_given"
+        },
+        {
+          "date": "2026-02-12",
+          "amount": 500.0,
+          "type": "payment_received"
+        }
+      ]
+    },
+    "Gupta aunty": {
+      "total_outstanding": 1890.0,
+      "transactions_count": 3,
+      "last_transaction_date": "2026-02-11",
+      "transactions": []
+    },
+    "Verma uncle": {
+      "total_outstanding": 750.0,
+      "transactions_count": 2,
+      "last_transaction_date": "2026-02-10",
+      "transactions": []
+    },
+    "Patel bhai": {
+      "total_outstanding": 3760.0,
+      "transactions_count": 8,
+      "last_transaction_date": "2026-02-13",
+      "transactions": []
+    }
+  },
+
+  "daily_summary": {
+    "date": "2026-02-14",
+    "total_revenue": 5218.0,
+    "total_transactions": 23,
+    "cash_collected": 3858.0,
+    "upi_collected": 1200.0,
+    "credit_given": 160.0,
+    "items_sold": 70,
+    "items_received": 47,
+    "unique_customers": 19
+  },
+
+  "preferences": {
+    "preferred_distributors": ["patel_wholesale", "metro_cash_carry"],
+    "reorder_threshold_days": 3,
+    "auto_order_enabled": false,
+    "notification_time": "09:00",
+    "language_preference": "hinglish"
+  },
+
+  "metadata": {
+    "created_at": "2026-01-15T10:00:00Z",
+    "last_updated": "2026-02-14T12:00:00Z",
+    "total_products": 20,
+    "critical_stock_count": 2,
+    "warning_stock_count": 2,
+    "healthy_stock_count": 16
+  }
+}

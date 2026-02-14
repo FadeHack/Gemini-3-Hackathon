@@ -1,0 +1,200 @@
+{
+  "festivals": [
+    {
+      "id": "diwali",
+      "name": "Diwali",
+      "name_hi": "दिवाली",
+      "description": "Festival of Lights",
+      "typical_months": [10, 11],
+      "duration_days": 5,
+      "impact_level": "very_high",
+      "category_multipliers": {
+        "sweets": 4.0,
+        "dry_fruits": 3.5,
+        "pooja_items": 5.0,
+        "decorations": 8.0,
+        "snacks": 2.5,
+        "fruits": 2.0,
+        "dairy": 1.8,
+        "cooking_oil": 2.0
+      },
+      "prep_days_before": 7,
+      "post_festival_dip": 0.6
+    },
+    {
+      "id": "navratri",
+      "name": "Navratri",
+      "name_hi": "नवरात्रि",
+      "description": "Nine Nights Festival",
+      "typical_months": [3, 4, 9, 10],
+      "duration_days": 9,
+      "impact_level": "high",
+      "category_multipliers": {
+        "fasting_food": 3.5,
+        "fruits": 2.5,
+        "dairy": 2.0,
+        "dry_fruits": 2.0,
+        "pooja_items": 3.0,
+        "sweets": 2.5
+      },
+      "prep_days_before": 3,
+      "post_festival_dip": 0.7
+    },
+    {
+      "id": "holi",
+      "name": "Holi",
+      "name_hi": "होली",
+      "description": "Festival of Colors",
+      "typical_months": [3],
+      "duration_days": 2,
+      "impact_level": "high",
+      "category_multipliers": {
+        "colors": 10.0,
+        "sweets": 3.0,
+        "snacks": 2.5,
+        "beverages": 2.0,
+        "fruits": 1.5
+      },
+      "prep_days_before": 5,
+      "post_festival_dip": 0.8
+    },
+    {
+      "id": "raksha_bandhan",
+      "name": "Raksha Bandhan",
+      "name_hi": "रक्षा बंधन",
+      "description": "Brother-Sister Bond Festival",
+      "typical_months": [8],
+      "duration_days": 1,
+      "impact_level": "medium",
+      "category_multipliers": {
+        "sweets": 3.5,
+        "dry_fruits": 2.5,
+        "snacks": 2.0,
+        "gifts": 4.0
+      },
+      "prep_days_before": 3,
+      "post_festival_dip": 0.9
+    },
+    {
+      "id": "eid",
+      "name": "Eid-ul-Fitr",
+      "name_hi": "ईद",
+      "description": "Festival marking end of Ramadan",
+      "typical_months": [4, 5],
+      "duration_days": 3,
+      "impact_level": "high",
+      "category_multipliers": {
+        "dates": 5.0,
+        "sewaiyan": 4.0,
+        "dry_fruits": 3.0,
+        "sweets": 3.5,
+        "dairy": 2.5,
+        "fruits": 2.0
+      },
+      "prep_days_before": 5,
+      "post_festival_dip": 0.7
+    },
+    {
+      "id": "janmashtami",
+      "name": "Janmashtami",
+      "name_hi": "जन्माष्टमी",
+      "description": "Krishna's Birthday",
+      "typical_months": [8, 9],
+      "duration_days": 1,
+      "impact_level": "medium",
+      "category_multipliers": {
+        "dairy": 3.0,
+        "sweets": 2.5,
+        "fasting_food": 2.0,
+        "fruits": 2.0,
+        "pooja_items": 2.5
+      },
+      "prep_days_before": 2,
+      "post_festival_dip": 0.85
+    },
+    {
+      "id": "ganesh_chaturthi",
+      "name": "Ganesh Chaturthi",
+      "name_hi": "गणेश चतुर्थी",
+      "description": "Ganesh Festival",
+      "typical_months": [8, 9],
+      "duration_days": 10,
+      "impact_level": "high",
+      "category_multipliers": {
+        "pooja_items": 4.0,
+        "sweets": 3.5,
+        "fruits": 2.5,
+        "flowers": 5.0,
+        "decorations": 3.0
+      },
+      "prep_days_before": 5,
+      "post_festival_dip": 0.7
+    },
+    {
+      "id": "makar_sankranti",
+      "name": "Makar Sankranti",
+      "name_hi": "मकर संक्रांति",
+      "description": "Harvest Festival",
+      "typical_months": [1],
+      "duration_days": 1,
+      "impact_level": "medium",
+      "category_multipliers": {
+        "til_gud": 5.0,
+        "jaggery": 3.0,
+        "peanuts": 3.0,
+        "kites": 8.0,
+        "sweets": 2.0
+      },
+      "prep_days_before": 3,
+      "post_festival_dip": 0.85
+    },
+    {
+      "id": "durga_puja",
+      "name": "Durga Puja",
+      "name_hi": "दुर्गा पूजा",
+      "description": "Worship of Goddess Durga",
+      "typical_months": [9, 10],
+      "duration_days": 10,
+      "impact_level": "very_high",
+      "region_specific": ["West Bengal", "Assam", "Odisha"],
+      "category_multipliers": {
+        "sweets": 4.5,
+        "fish": 3.0,
+        "fruits": 2.5,
+        "pooja_items": 4.0,
+        "flowers": 5.0,
+        "decorations": 4.0
+      },
+      "prep_days_before": 7,
+      "post_festival_dip": 0.6
+    },
+    {
+      "id": "pongal",
+      "name": "Pongal",
+      "name_hi": "पोंगल",
+      "description": "Tamil Harvest Festival",
+      "typical_months": [1],
+      "duration_days": 4,
+      "impact_level": "high",
+      "region_specific": ["Tamil Nadu", "Andhra Pradesh"],
+      "category_multipliers": {
+        "rice": 3.5,
+        "jaggery": 3.0,
+        "sugarcane": 4.0,
+        "turmeric": 2.5,
+        "dairy": 2.0
+      },
+      "prep_days_before": 5,
+      "post_festival_dip": 0.75
+    }
+  ],
+  "metadata": {
+    "total_festivals": 10,
+    "impact_levels": {
+      "very_high": ["diwali", "durga_puja"],
+      "high": ["navratri", "holi", "eid", "ganesh_chaturthi", "pongal"],
+      "medium": ["raksha_bandhan", "janmashtami", "makar_sankranti"]
+    },
+    "notes": "Multipliers represent expected increase in demand compared to normal days. prep_days_before indicates when to start ordering extra stock."
+  }
+}

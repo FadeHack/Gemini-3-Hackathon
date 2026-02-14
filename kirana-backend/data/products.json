@@ -1,0 +1,248 @@
+{
+  "products": [
+    {
+      "sku_id": "maggi_70g",
+      "name": "Maggi 2-Minute Noodles 70g",
+      "name_hi": "मैगी नूडल्स",
+      "category": "instant_food",
+      "mrp": 14.0,
+      "avg_purchase_price": 11.5,
+      "unit": "packet",
+      "reorder_point": 16,
+      "typical_daily_sales": 8
+    },
+    {
+      "sku_id": "atta_5kg",
+      "name": "Aashirvaad Atta 5kg",
+      "name_hi": "आशीर्वाद आटा",
+      "category": "staples",
+      "mrp": 240.0,
+      "avg_purchase_price": 220.0,
+      "unit": "packet",
+      "reorder_point": 5,
+      "typical_daily_sales": 3
+    },
+    {
+      "sku_id": "toor_dal_1kg",
+      "name": "Toor Dal 1kg",
+      "name_hi": "तूर दाल",
+      "category": "pulses",
+      "mrp": 150.0,
+      "avg_purchase_price": 135.0,
+      "unit": "kg",
+      "reorder_point": 10,
+      "typical_daily_sales": 4
+    },
+    {
+      "sku_id": "rice_5kg",
+      "name": "India Gate Basmati Rice 5kg",
+      "name_hi": "बासमती चावल",
+      "category": "staples",
+      "mrp": 450.0,
+      "avg_purchase_price": 410.0,
+      "unit": "packet",
+      "reorder_point": 4,
+      "typical_daily_sales": 2
+    },
+    {
+      "sku_id": "surf_excel_1kg",
+      "name": "Surf Excel Detergent 1kg",
+      "name_hi": "सर्फ एक्सेल",
+      "category": "household",
+      "mrp": 180.0,
+      "avg_purchase_price": 160.0,
+      "unit": "packet",
+      "reorder_point": 8,
+      "typical_daily_sales": 5
+    },
+    {
+      "sku_id": "parle_g_200g",
+      "name": "Parle-G Biscuits 200g",
+      "name_hi": "पारले-जी बिस्कुट",
+      "category": "snacks",
+      "mrp": 20.0,
+      "avg_purchase_price": 17.0,
+      "unit": "packet",
+      "reorder_point": 20,
+      "typical_daily_sales": 12
+    },
+    {
+      "sku_id": "britannia_bread",
+      "name": "Britannia Bread 400g",
+      "name_hi": "ब्रिटानिया ब्रेड",
+      "category": "bakery",
+      "mrp": 35.0,
+      "avg_purchase_price": 30.0,
+      "unit": "packet",
+      "reorder_point": 10,
+      "typical_daily_sales": 6
+    },
+    {
+      "sku_id": "amul_milk_1l",
+      "name": "Amul Toned Milk 1L",
+      "name_hi": "अमूल दूध",
+      "category": "dairy",
+      "mrp": 62.0,
+      "avg_purchase_price": 57.0,
+      "unit": "packet",
+      "reorder_point": 15,
+      "typical_daily_sales": 10
+    },
+    {
+      "sku_id": "fortune_oil_1l",
+      "name": "Fortune Sunflower Oil 1L",
+      "name_hi": "फॉर्च्यून तेल",
+      "category": "cooking_oil",
+      "mrp": 180.0,
+      "avg_purchase_price": 165.0,
+      "unit": "bottle",
+      "reorder_point": 6,
+      "typical_daily_sales": 3
+    },
+    {
+      "sku_id": "good_day_100g",
+      "name": "Good Day Butter Cookies 100g",
+      "name_hi": "गुड डे बिस्कुट",
+      "category": "snacks",
+      "mrp": 30.0,
+      "avg_purchase_price": 26.0,
+      "unit": "packet",
+      "reorder_point": 15,
+      "typical_daily_sales": 7
+    },
+    {
+      "sku_id": "pepsi_600ml",
+      "name": "Pepsi 600ml",
+      "name_hi": "पेप्सी",
+      "category": "beverages",
+      "mrp": 40.0,
+      "avg_purchase_price": 33.0,
+      "unit": "bottle",
+      "reorder_point": 12,
+      "typical_daily_sales": 8
+    },
+    {
+      "sku_id": "lays_52g",
+      "name": "Lays Chips 52g",
+      "name_hi": "लेज़ चिप्स",
+      "category": "snacks",
+      "mrp": 20.0,
+      "avg_purchase_price": 16.0,
+      "unit": "packet",
+      "reorder_point": 18,
+      "typical_daily_sales": 9
+    },
+    {
+      "sku_id": "sabudana_500g",
+      "name": "Sabudana 500g",
+      "name_hi": "साबूदाना",
+      "category": "fasting_food",
+      "mrp": 65.0,
+      "avg_purchase_price": 48.0,
+      "unit": "packet",
+      "reorder_point": 15,
+      "typical_daily_sales": 2,
+      "festival_boost": {
+        "navratri": 3.0,
+        "janmashtami": 2.5
+      }
+    },
+    {
+      "sku_id": "peanuts_500g",
+      "name": "Roasted Peanuts 500g",
+      "name_hi": "मूंगफली",
+      "category": "fasting_food",
+      "mrp": 80.0,
+      "avg_purchase_price": 65.0,
+      "unit": "packet",
+      "reorder_point": 10,
+      "typical_daily_sales": 3,
+      "festival_boost": {
+        "navratri": 2.0
+      }
+    },
+    {
+      "sku_id": "sendha_namak_200g",
+      "name": "Sendha Namak (Rock Salt) 200g",
+      "name_hi": "सेंधा नमक",
+      "category": "fasting_food",
+      "mrp": 40.0,
+      "avg_purchase_price": 30.0,
+      "unit": "packet",
+      "reorder_point": 8,
+      "typical_daily_sales": 1,
+      "festival_boost": {
+        "navratri": 4.0
+      }
+    },
+    {
+      "sku_id": "coconut_fresh",
+      "name": "Fresh Coconut",
+      "name_hi": "नारियल",
+      "category": "fruits",
+      "mrp": 50.0,
+      "avg_purchase_price": 35.0,
+      "unit": "piece",
+      "reorder_point": 10,
+      "typical_daily_sales": 4,
+      "festival_boost": {
+        "navratri": 2.5,
+        "diwali": 2.0
+      }
+    },
+    {
+      "sku_id": "banana_dozen",
+      "name": "Bananas (Dozen)",
+      "name_hi": "केले",
+      "category": "fruits",
+      "mrp": 60.0,
+      "avg_purchase_price": 45.0,
+      "unit": "dozen",
+      "reorder_point": 8,
+      "typical_daily_sales": 5,
+      "festival_boost": {
+        "navratri": 2.0
+      }
+    },
+    {
+      "sku_id": "incense_sticks",
+      "name": "Cycle Agarbatti Pack",
+      "name_hi": "अगरबत्ती",
+      "category": "pooja_items",
+      "mrp": 35.0,
+      "avg_purchase_price": 28.0,
+      "unit": "packet",
+      "reorder_point": 12,
+      "typical_daily_sales": 4,
+      "festival_boost": {
+        "diwali": 3.0,
+        "navratri": 2.0
+      }
+    },
+    {
+      "sku_id": "diya_pack",
+      "name": "Clay Diya Pack (10 pieces)",
+      "name_hi": "मिट्टी के दिये",
+      "category": "pooja_items",
+      "mrp": 40.0,
+      "avg_purchase_price": 25.0,
+      "unit": "pack",
+      "reorder_point": 5,
+      "typical_daily_sales": 1,
+      "festival_boost": {
+        "diwali": 8.0
+      }
+    },
+    {
+      "sku_id": "chana_dal_500g",
+      "name": "Chana Dal 500g",
+      "name_hi": "चना दाल",
+      "category": "pulses",
+      "mrp": 70.0,
+      "avg_purchase_price": 60.0,
+      "unit": "packet",
+      "reorder_point": 10,
+      "typical_daily_sales": 3
+    }
+  ]
+}
