@@ -407,11 +407,16 @@ class GeminiService:
                 reasoning_steps = []
                 if "reasoning_steps" in parsed_data:
                     for step in parsed_data["reasoning_steps"]:
-                        reasoning_steps.append(ReasoningStep(
-                            step_type=step.get("type", "ANALYSIS"),
-                            description=step.get("description", ""),
-                            details=step.get("details", {})
-                        ))
+                        # Handle both dict and string formats
+                        if isinstance(step, dict):
+                            reasoning_steps.append(ReasoningStep(
+                                step_type=step.get("type", step.get("step_type", "ANALYSIS")),
+                                description=step.get("description", ""),
+                                details=step.get("details", {})
+                            ))
+                        else:
+                            # Skip non-dict entries
+                            logger.warning(f"Skipping non-dict reasoning step: {type(step)}")
 
                 # Extract message to owner
                 message = parsed_data.get(
