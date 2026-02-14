@@ -4,7 +4,7 @@ Defines API request/response models for message endpoints
 """
 
 from pydantic import BaseModel, Field
-from typing import Optional, Literal
+from typing import Optional, Literal, Dict, Any
 from datetime import datetime
 
 
@@ -22,6 +22,10 @@ class MessageInput(BaseModel):
     language: Optional[str] = Field(
         "hinglish",
         description="Language preference: hinglish, hindi, kannada, tamil"
+    )
+    metadata: Optional[Dict[str, Any]] = Field(
+        None,
+        description="Optional metadata (e.g., image_type: 'shelf' or 'parchi')"
     )
 
     class Config:

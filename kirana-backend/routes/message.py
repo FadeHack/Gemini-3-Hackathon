@@ -93,76 +93,173 @@ async def process_message_background(
             )
 
         elif message.message_type == "image":
-            # Detect if shelf photo or parchi
-            # For now, assume shelf photo (can be enhanced with metadata)
-            await ws_manager.send_reasoning_step(
-                store_id,
-                "SHELF_ANALYSIS",
-                "Analyzing shelf photo...",
-                icon="🔍"
-            )
+            # Detect if shelf photo or parchi (handwritten slip)
+            # Check metadata hint or analyze image with Gemini
+            is_parchi = False
+            if hasattr(message, 'metadata') and message.metadata:
+                is_parchi = message.metadata.get('image_type') == 'parchi'
 
-            # Process with Gemini
-            response = await gemini_service.process_shelf_photo(
-                message.content,
-                store_context,
-                products_data["products"]
-            )
-
-            # Extract detected products and update inventory
-            if response.structured_data.get("products_detected"):
-                inventory = store_data["current_inventory"]
-                engine = InventoryEngine(store_id, inventory)
-
-                # Calibrate from detected products
-                detected = response.structured_data["products_detected"]
-                # (In production, would call engine.calibrate_from_shelf_photo)
-
-            # Send response
-            await ws_manager.send_chat_message(
-                store_id,
-                response.message_to_owner,
-                sender="assistant"
-            )
-
-            # Generate procurement if needed
-            if response.structured_data.get("procurement_recommendations"):
+            if is_parchi:
+                # ====== PARCHI PROCESSING FLOW ======
                 await ws_manager.send_reasoning_step(
                     store_id,
-                    "ORDER_GENERATION",
-                    "Generating procurement order...",
-                    icon="🛒"
+                    "PARCHI_READING",
+                    "Reading handwritten parchi...",
+                    icon="📝"
                 )
 
-                # Load distributors
-                with open(settings.DISTRIBUTOR_PRICING_PATH, "r") as f:
-                    distributors_data = json.load(f)
-
-                # Generate order
-                order = generate_procurement_order(
-                    products=products_data["products"],
-                    distributors=distributors_data["distributors"],
-                    context=store_context,
-                    store_id=store_id
+                # Process with Gemini OCR
+                response = await gemini_service.process_parchi_image(
+                    message.content,
+                    store_context,
+                    products_data["products"]
                 )
 
-                if order.get("items"):
-                    await ws_manager.send_procurement_order(store_id, order)
+                # Extract transactions and update inventory
+                if response.structured_data.get("transactions"):
+                    inventory = store_data["current_inventory"]
+                    engine = InventoryEngine(store_id, inventory)
 
-                    # Send formatted message
-                    order_msg = create_procurement_message(
-                        order_id=order["order_id"],
-                        total_items=order["summary"]["total_items"],
-                        total_cost=order["summary"]["total_cost"],
-                        savings=order["summary"]["total_savings"],
-                        distributor_count=len(order["distributor_split"]),
-                        festival_name=order.get("festival_context", {}).get("name")
-                    )
-                    await ws_manager.send_chat_message(
+                    transactions = response.structured_data["transactions"]
+                    total_revenue = 0
+                    total_items = 0
+
+                    for txn in transactions:
+                        # Apply each transaction to inventory
+                        try:
+                            result = engine.apply_transaction(
+                                product_id=txn.get("product_id"),
+                                quantity=-txn.get("quantity", 0),  # Negative for sales
+                                transaction_type="sale",
+                                price=txn.get("price"),
+                                payment_type=txn.get("payment_type", "cash"),
+                                customer_name=txn.get("customer_name")
+                            )
+
+                            # Send inventory update via WebSocket
+                            await ws_manager.send_message(
+                                store_id,
+                                {
+                                    "event_type": "inventory_update",
+                                    "data": {
+                                        "product_id": txn.get("product_id"),
+                                        "product_name": txn.get("product_name"),
+                                        "quantity_change": -txn.get("quantity", 0),
+                                        "new_stock": result.get("new_stock", 0)
+                                    }
+                                }
+                            )
+
+                            total_revenue += txn.get("amount", 0)
+                            total_items += txn.get("quantity", 0)
+
+                        except Exception as e:
+                            logger.warning(f"Failed to apply transaction: {e}")
+
+                    # Send P&L update
+                    await ws_manager.send_message(
                         store_id,
-                        order_msg,
-                        sender="assistant"
+                        {
+                            "event_type": "pnl_update",
+                            "data": {
+                                "revenue_change": total_revenue,
+                                "items_sold": total_items
+                            }
+                        }
                     )
+
+                    # Update udhaar if any credit sales
+                    udhaar_total = sum(
+                        txn.get("amount", 0)
+                        for txn in transactions
+                        if txn.get("payment_type") == "credit"
+                    )
+                    if udhaar_total > 0:
+                        await ws_manager.send_message(
+                            store_id,
+                            {
+                                "event_type": "udhaar_update",
+                                "data": {"amount_change": udhaar_total}
+                            }
+                        )
+
+                # Send response
+                await ws_manager.send_chat_message(
+                    store_id,
+                    response.message_to_owner,
+                    sender="assistant"
+                )
+
+            else:
+                # ====== SHELF PHOTO PROCESSING FLOW ======
+                await ws_manager.send_reasoning_step(
+                    store_id,
+                    "SHELF_ANALYSIS",
+                    "Analyzing shelf photo...",
+                    icon="🔍"
+                )
+
+                # Process with Gemini
+                response = await gemini_service.process_shelf_photo(
+                    message.content,
+                    store_context,
+                    products_data["products"]
+                )
+
+                # Extract detected products and update inventory
+                if response.structured_data.get("products_detected"):
+                    inventory = store_data["current_inventory"]
+                    engine = InventoryEngine(store_id, inventory)
+
+                    # Calibrate from detected products
+                    detected = response.structured_data["products_detected"]
+                    # (In production, would call engine.calibrate_from_shelf_photo)
+
+                # Send response
+                await ws_manager.send_chat_message(
+                    store_id,
+                    response.message_to_owner,
+                    sender="assistant"
+                )
+
+                # Generate procurement if needed
+                if response.structured_data.get("procurement_recommendations"):
+                    await ws_manager.send_reasoning_step(
+                        store_id,
+                        "ORDER_GENERATION",
+                        "Generating procurement order...",
+                        icon="🛒"
+                    )
+
+                    # Load distributors
+                    with open(settings.DISTRIBUTOR_PRICING_PATH, "r") as f:
+                        distributors_data = json.load(f)
+
+                    # Generate order
+                    order = generate_procurement_order(
+                        products=products_data["products"],
+                        distributors=distributors_data["distributors"],
+                        context=store_context,
+                        store_id=store_id
+                    )
+
+                    if order.get("items"):
+                        await ws_manager.send_procurement_order(store_id, order)
+
+                        # Send formatted message
+                        order_msg = create_procurement_message(
+                            order_id=order["order_id"],
+                            total_items=order["summary"]["total_items"],
+                            total_cost=order["summary"]["total_cost"],
+                            savings=order["summary"]["total_savings"],
+                            distributor_count=len(order["distributor_split"]),
+                            festival_name=order.get("festival_context", {}).get("name")
+                        )
+                        await ws_manager.send_chat_message(
+                            store_id,
+                            order_msg,
+                            sender="assistant"
+                        )
 
         elif message.message_type == "voice":
             await ws_manager.send_reasoning_step(
