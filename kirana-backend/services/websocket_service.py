@@ -53,7 +53,7 @@ class WebSocketManager:
         await self.send_event(
             store_id,
             WebSocketEvent(
-                event=WebSocketEventType.CONNECTION_ESTABLISHED,
+                event=WebSocketEventType.CONNECTION_ESTABLISHED.value,
                 timestamp=datetime.now().isoformat(),
                 data={
                     "store_id": store_id,
@@ -166,7 +166,7 @@ class WebSocketManager:
         timestamp = datetime.now().isoformat()
 
         event = ReasoningStepEvent(
-            event=WebSocketEventType.REASONING_STEP,
+            event=WebSocketEventType.REASONING_STEP.value,
             data={
                 "step_number": step_number or 1,
                 "step_type": step_type,
@@ -212,7 +212,7 @@ class WebSocketManager:
             message_id = f"msg_ai_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{uuid.uuid4().hex[:6]}"
 
         event = ChatMessageEvent(
-            event=WebSocketEventType.CHAT_MESSAGE,
+            event=WebSocketEventType.CHAT_MESSAGE.value,
             data={
                 "message_id": message_id,
                 "sender": sender,  # "ai" or "system"
@@ -293,7 +293,7 @@ class WebSocketManager:
         timestamp = datetime.now().isoformat()
 
         event = InventoryUpdateEvent(
-            event=WebSocketEventType.INVENTORY_UPDATE,
+            event=WebSocketEventType.INVENTORY_UPDATE.value,
             data={
                 "product_id": product_id,
                 "product_name": product_name,
@@ -344,7 +344,7 @@ class WebSocketManager:
         enhanced_order_data["valid_until"] = valid_until.isoformat()
 
         event = ProcurementOrderEvent(
-            event=WebSocketEventType.PROCUREMENT_ORDER,
+            event=WebSocketEventType.PROCUREMENT_ORDER.value,
             data=enhanced_order_data,
             timestamp=timestamp
         )
@@ -378,7 +378,7 @@ class WebSocketManager:
         timestamp = datetime.now().isoformat()
 
         event = UdhaarUpdateEvent(
-            event=WebSocketEventType.UDHAAR_UPDATE,
+            event=WebSocketEventType.UDHAAR_UPDATE.value,
             data={
                 "customer": customer_name,
                 "old_amount": old_amount,
@@ -452,7 +452,7 @@ class WebSocketManager:
             error_code: Optional error code
         """
         event = WebSocketEvent(
-            event=WebSocketEventType.ERROR,
+            event=WebSocketEventType.ERROR.value,
             timestamp=datetime.now().isoformat(),
             data={
                 "error": error_message,
