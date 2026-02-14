@@ -1,0 +1,127 @@
+{
+  "reasoning_steps": [
+    {
+      "step_number": 1,
+      "step_type": "SHELF_ANALYSIS",
+      "description": "Analyzing shelf photo to detect products and count stock",
+      "icon": "🔍",
+      "details": {
+        "action": "Image analysis",
+        "focus": "Product detection and counting"
+      }
+    },
+    {
+      "step_number": 2,
+      "step_type": "INVENTORY_COMPARISON",
+      "description": "Comparing detected stock with ledger records",
+      "icon": "📊",
+      "details": {
+        "action": "Cross-verification",
+        "discrepancies_found": 3
+      }
+    },
+    {
+      "step_number": 3,
+      "step_type": "DEMAND_FORECAST",
+      "description": "Generating 7-day demand forecast with festival multipliers",
+      "icon": "📈",
+      "details": {
+        "action": "Forecasting",
+        "festival": "Navratri (2 days away)",
+        "weather": "Hot (32°C)"
+      }
+    },
+    {
+      "step_number": 4,
+      "step_type": "ORDER_GENERATION",
+      "description": "Creating optimized procurement order across 3 distributors",
+      "icon": "🛒",
+      "details": {
+        "action": "Order optimization",
+        "distributors": 3,
+        "total_savings": "₹5,124"
+      }
+    }
+  ],
+  "message_to_owner": "**📸 Shelf Analysis Complete!**\n\nAapki shelf mein maine ye products dekhe:\n\n**🔴 Critical Stock (turant order karo):**\n• Maggi 70g - sirf 3 packets (aaj hi khatam!)\n• Surf Excel 1kg - 2 pieces left\n• Pepsi 600ml - 10 bottles (1 din)\n\n**🟡 Low Stock (jaldi order karo):**\n• Atta 5kg - 4 bags (2 din)\n• Parle-G - 5 packets\n• Amul Milk 1L - 8 packets\n\n**✅ Good Stock:**\n• Toor Dal - 12kg\n• Basmati Rice - 15kg\n\n**🎉 Navratri Alert!** 2 din mein Navratri start hoga:\n• Sabudana ka demand 3.5x badhega\n• Sendha Namak 4x jayega\n• Peanuts aur fruits bhi bahut chalenge\n\n**💰 Procurement Order Ready:**\n\nMain tumhare liye best order bana diya hai:\n• Total: ₹44,996 (10 products)\n• Savings: ₹5,124 (3 distributors se order karke)\n• UPI links ready - direct payment karo!\n\n**Top orders:**\n1. Maggi 70g - 82 packets (₹6,724)\n2. Sabudana 500g - 45 packets (₹4,275) [Navratri boost!]\n3. Atta 5kg - 28 bags (₹6,440)\n\nOrder approve karoge? 🛒",
+  "structured_data": {
+    "products_detected": [
+      {
+        "product_id": "maggi_70g",
+        "product_name": "Maggi 2-Minute Noodles 70g",
+        "shelf_count": 3,
+        "ledger_count": 3,
+        "match": true,
+        "urgency": "critical"
+      },
+      {
+        "product_id": "surf_excel_1kg",
+        "product_name": "Surf Excel Detergent 1kg",
+        "shelf_count": 2,
+        "ledger_count": 2,
+        "match": true,
+        "urgency": "critical"
+      },
+      {
+        "product_id": "pepsi_600ml",
+        "product_name": "Pepsi 600ml",
+        "shelf_count": 10,
+        "ledger_count": 10,
+        "match": true,
+        "urgency": "warning"
+      },
+      {
+        "product_id": "atta_5kg",
+        "product_name": "Aashirvaad Atta 5kg",
+        "shelf_count": 4,
+        "ledger_count": 4,
+        "match": true,
+        "urgency": "warning"
+      },
+      {
+        "product_id": "parle_g",
+        "product_name": "Parle-G Biscuits 100g",
+        "shelf_count": 5,
+        "ledger_count": 5,
+        "match": true,
+        "urgency": "warning"
+      },
+      {
+        "product_id": "amul_milk_1l",
+        "product_name": "Amul Milk 1L",
+        "shelf_count": 8,
+        "ledger_count": 8,
+        "match": true,
+        "urgency": "warning"
+      },
+      {
+        "product_id": "toor_dal_1kg",
+        "product_name": "Toor Dal 1kg",
+        "shelf_count": 12,
+        "ledger_count": 12,
+        "match": true,
+        "urgency": "normal"
+      },
+      {
+        "product_id": "basmati_rice_5kg",
+        "product_name": "India Gate Basmati Rice 5kg",
+        "shelf_count": 15,
+        "ledger_count": 15,
+        "match": true,
+        "urgency": "normal"
+      }
+    ],
+    "total_products_detected": 8,
+    "critical_items": 2,
+    "low_stock_items": 4,
+    "discrepancies": [],
+    "procurement_recommendations": true,
+    "festival_impact": {
+      "festival": "Navratri",
+      "days_until": 2,
+      "affected_products": ["sabudana_500g", "sendha_namak_200g", "peanuts_500g"]
+    }
+  },
+  "timestamp": "2026-02-14T13:15:00",
+  "processing_time_ms": 2847
+}

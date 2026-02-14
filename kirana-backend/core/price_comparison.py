@@ -26,11 +26,20 @@ def compare_distributors(
     for dist in distributors:
         dist_products = dist.get("products", {})
         if product_id in dist_products:
-            price = dist_products[product_id]
+            price_info = dist_products[product_id]
+            # Handle both dict format {"price": X, "moq": Y} and simple number format
+            if isinstance(price_info, dict):
+                unit_price = price_info.get("price", 0)
+                moq = price_info.get("moq", 1)
+            else:
+                unit_price = price_info
+                moq = 1
+
             prices[dist["id"]] = {
                 "distributor_id": dist["id"],
                 "distributor_name": dist["name"],
-                "price": price,
+                "price": unit_price,
+                "moq": moq,
                 "delivery_days": dist.get("delivery_days", 1),
                 "minimum_order": dist.get("minimum_order", 0),
                 "reliability_score": dist.get("reliability_score", 3.0)
@@ -166,7 +175,10 @@ def optimize_order_split(
             baseline_products = distributors[0].get("products", {})
 
             if product_id in baseline_products:
-                baseline_cost += baseline_products[product_id] * quantity
+                price_info = baseline_products[product_id]
+                # Handle both dict and simple number format
+                unit_price = price_info.get("price", 0) if isinstance(price_info, dict) else price_info
+                baseline_cost += unit_price * quantity
 
         savings_vs_baseline = baseline_cost - total_cost
     else:

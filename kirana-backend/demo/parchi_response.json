@@ -1,0 +1,133 @@
+{
+  "reasoning_steps": [
+    {
+      "step_number": 1,
+      "step_type": "PARCHI_READING",
+      "description": "Reading handwritten Hinglish sales slip",
+      "icon": "📝",
+      "details": {
+        "action": "OCR processing",
+        "language_detected": "Hinglish (Hindi + English mix)",
+        "handwriting_quality": "moderate"
+      }
+    },
+    {
+      "step_number": 2,
+      "step_type": "TRANSACTION_EXTRACTION",
+      "description": "Extracting product names, quantities, and prices",
+      "icon": "🔍",
+      "details": {
+        "action": "Data extraction",
+        "transactions_found": 5,
+        "uncertain_items": 1
+      }
+    },
+    {
+      "step_number": 3,
+      "step_type": "PRODUCT_MATCHING",
+      "description": "Matching handwritten names to product catalog",
+      "icon": "🔗",
+      "details": {
+        "action": "Fuzzy matching",
+        "matched": 4,
+        "unmatched": 1
+      }
+    },
+    {
+      "step_number": 4,
+      "step_type": "INVENTORY_UPDATE",
+      "description": "Updating inventory and udhaar ledger",
+      "icon": "💾",
+      "details": {
+        "action": "Database update",
+        "revenue_added": "₹279",
+        "udhaar_customers": 1
+      }
+    }
+  ],
+  "message_to_owner": "**📝 Parchi Read Ho Gayi!**\n\nMaine tumhari kacchi parchi se ye transactions nikale:\n\n**✅ Confirmed Sales:**\n1. **Maggi 70g** - 3 packets @ ₹12 = **₹36** (Cash 💵)\n2. **Parle-G 100g** - 5 packets @ ₹5 = **₹25** (UPI 📱)\n3. **Atta 5kg** - 2 bags @ ₹115 = **₹230** (Cash 💵)\n4. **Pepsi 600ml** - 4 bottles @ ₹20 = **₹80** (UPI 📱)\n\n**⚠️ Uncertain Item (confirm karo):**\n5. **\"सुर्फ\" (Surf?)** - 1 piece @ ₹140 = **₹140** (Udhaar - Ramesh 📒)\n   *(Handwriting thoda unclear tha, shayad Surf Excel hai?)*\n\n**📊 Summary:**\n• Total Items: 15 pieces\n• Total Revenue: **₹511**\n• Cash: ₹266 💵\n• UPI: ₹105 📱\n• Udhaar (Ramesh): ₹140 📒\n\n**📦 Inventory Updated:**\n• Maggi: 3 → 0 (CRITICAL! Order karo)\n• Parle-G: 5 → 0 (Restocking needed)\n• Atta: 4 → 2 bags\n• Pepsi: 10 → 6 bottles\n\n**📒 Udhaar Ledger:**\nRamesh ka balance: ₹890 → ₹1,030 (+₹140)\n\nUncertain item confirm karne ke baad final update karoon? ✅",
+  "structured_data": {
+    "transactions": [
+      {
+        "product_id": "maggi_70g",
+        "product_name": "Maggi 2-Minute Noodles 70g",
+        "quantity": 3,
+        "price": 12.0,
+        "amount": 36.0,
+        "payment_type": "cash",
+        "customer_name": null,
+        "confidence": 0.95,
+        "handwritten_text": "मैगी 3 पैकेट"
+      },
+      {
+        "product_id": "parle_g",
+        "product_name": "Parle-G Biscuits 100g",
+        "quantity": 5,
+        "price": 5.0,
+        "amount": 25.0,
+        "payment_type": "upi",
+        "customer_name": null,
+        "confidence": 0.92,
+        "handwritten_text": "परले-जी 5"
+      },
+      {
+        "product_id": "atta_5kg",
+        "product_name": "Aashirvaad Atta 5kg",
+        "quantity": 2,
+        "price": 115.0,
+        "amount": 230.0,
+        "payment_type": "cash",
+        "customer_name": null,
+        "confidence": 0.88,
+        "handwritten_text": "आटा 2 kg"
+      },
+      {
+        "product_id": "pepsi_600ml",
+        "product_name": "Pepsi 600ml",
+        "quantity": 4,
+        "price": 20.0,
+        "amount": 80.0,
+        "payment_type": "upi",
+        "customer_name": null,
+        "confidence": 0.91,
+        "handwritten_text": "पेप्सी 4 बोतल"
+      }
+    ],
+    "uncertain_items": [
+      {
+        "handwritten_text": "सुर्फ 1",
+        "possible_matches": [
+          {
+            "product_id": "surf_excel_1kg",
+            "product_name": "Surf Excel Detergent 1kg",
+            "confidence": 0.68
+          }
+        ],
+        "quantity": 1,
+        "price": 140.0,
+        "payment_type": "credit",
+        "customer_name": "Ramesh"
+      }
+    ],
+    "total_transactions": 4,
+    "total_uncertain": 1,
+    "total_revenue": 371.0,
+    "confirmed_revenue": 371.0,
+    "uncertain_revenue": 140.0,
+    "payment_breakdown": {
+      "cash": 266.0,
+      "upi": 105.0,
+      "credit": 140.0
+    },
+    "udhaar_updates": [
+      {
+        "customer_name": "Ramesh",
+        "amount": 140.0,
+        "previous_balance": 890.0,
+        "new_balance": 1030.0
+      }
+    ]
+  },
+  "timestamp": "2026-02-14T13:20:00",
+  "processing_time_ms": 3124
+}

@@ -1,0 +1,92 @@
+{
+  "reasoning_steps": [
+    {
+      "step_number": 1,
+      "step_type": "VOICE_PROCESSING",
+      "description": "Transcribing Hinglish voice message",
+      "icon": "🎤",
+      "details": {
+        "action": "Speech-to-text",
+        "language": "Hinglish",
+        "audio_duration": "8.5s",
+        "audio_quality": "good"
+      }
+    },
+    {
+      "step_number": 2,
+      "step_type": "INTENT_DETECTION",
+      "description": "Analyzing intent and extracting transaction details",
+      "icon": "🧠",
+      "details": {
+        "action": "NLU processing",
+        "intent": "SALE",
+        "confidence": 0.94
+      }
+    },
+    {
+      "step_number": 3,
+      "step_type": "ENTITY_EXTRACTION",
+      "description": "Extracting product, quantity, and payment method",
+      "icon": "🔍",
+      "details": {
+        "action": "Entity recognition",
+        "entities_found": 3,
+        "product": "Maggi 70g",
+        "quantity": 5,
+        "payment": "cash"
+      }
+    },
+    {
+      "step_number": 4,
+      "step_type": "INVENTORY_UPDATE",
+      "description": "Updating inventory with sale transaction",
+      "icon": "💾",
+      "details": {
+        "action": "Stock update",
+        "new_stock": 0,
+        "alert_generated": "critical"
+      }
+    }
+  ],
+  "message_to_owner": "**🎤 Voice Message Samajh Gayi!**\n\n**📝 Aapne kaha:**\n\"Aaj subah Maggi ke paanch packet bik gaye, cash mein. Stock check karo toh sirf teen bache the, ab khatam ho gaye.\"\n\n**✅ Transaction Applied:**\n• Product: **Maggi 2-Minute Noodles 70g**\n• Quantity Sold: **5 packets**\n• Price: **₹12 per packet**\n• Total: **₹60**\n• Payment: **Cash** 💵\n\n**📦 Inventory Update:**\n• Previous Stock: 3 packets  \n• Sold: 5 packets\n• New Stock: **-2 packets** ⚠️\n\n**🔴 CRITICAL ALERT!**\nMaggi ka stock negative mein chala gaya! Matlab:\n1. Ledger mein 3 the\n2. Actually 8 bik gaye (5 aaj + earlier)\n3. **Inventory mismatch hai!**\n\nRecommendation:\n• Turant stock count karo (physical verification)\n• 82 packets order karo (1 week stock + safety)\n• Next time parchi likhte waqt real-time update karo\n\n**💰 Today's Sales:**\n• Cash collected: **₹60**\n• Items sold: **5**\n\nKuch aur update karna hai? 📱",
+  "structured_data": {
+    "transcription": "Aaj subah Maggi ke paanch packet bik gaye, cash mein. Stock check karo toh sirf teen bache the, ab khatam ho gaye.",
+    "intent": "SALE",
+    "intent_confidence": 0.94,
+    "entities": {
+      "product_id": "maggi_70g",
+      "product_name": "Maggi 2-Minute Noodles 70g",
+      "quantity": 5,
+      "price_per_unit": 12.0,
+      "total_amount": 60.0,
+      "payment_type": "cash",
+      "customer_name": null,
+      "timestamp_mentioned": "subah (morning)"
+    },
+    "transaction": {
+      "product_id": "maggi_70g",
+      "quantity": -5,
+      "transaction_type": "sale",
+      "price": 12.0,
+      "payment_type": "cash",
+      "amount": 60.0
+    },
+    "inventory_alert": {
+      "product_id": "maggi_70g",
+      "product_name": "Maggi 2-Minute Noodles 70g",
+      "current_stock": -2,
+      "urgency": "critical",
+      "issue": "negative_stock",
+      "recommendation": "Immediate stock verification needed - ledger mismatch detected"
+    },
+    "alternative_interpretations": [
+      {
+        "interpretation": "Stock discrepancy - more sold than recorded",
+        "confidence": 0.92,
+        "action": "Physical stock count recommended"
+      }
+    ]
+  },
+  "timestamp": "2026-02-14T13:25:00",
+  "processing_time_ms": 1856
+}
