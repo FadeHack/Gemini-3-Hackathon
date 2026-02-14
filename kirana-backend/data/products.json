@@ -243,6 +243,165 @@
       "unit": "packet",
       "reorder_point": 10,
       "typical_daily_sales": 3
+    },
+    {
+      "sku_id": "besan_1kg",
+      "name": "Besan (Gram Flour) 1kg",
+      "name_hi": "बेसन",
+      "category": "staples",
+      "mrp": 95.0,
+      "avg_purchase_price": 85.0,
+      "unit": "kg",
+      "reorder_point": 8,
+      "typical_daily_sales": 2,
+      "festival_boost": {
+        "holi": 5.0
+      }
+    },
+    {
+      "sku_id": "khoya_500g",
+      "name": "Khoya (Milk Solids) 500g",
+      "name_hi": "खोया",
+      "category": "dairy",
+      "mrp": 200.0,
+      "avg_purchase_price": 180.0,
+      "unit": "packet",
+      "reorder_point": 5,
+      "typical_daily_sales": 1,
+      "festival_boost": {
+        "holi": 5.0,
+        "diwali": 3.0
+      }
+    },
+    {
+      "sku_id": "sugar_1kg",
+      "name": "Sugar 1kg",
+      "name_hi": "चीनी",
+      "category": "staples",
+      "mrp": 50.0,
+      "avg_purchase_price": 45.0,
+      "unit": "kg",
+      "reorder_point": 15,
+      "typical_daily_sales": 5,
+      "festival_boost": {
+        "holi": 3.0,
+        "diwali": 2.5
+      }
+    },
+    {
+      "sku_id": "coconut_powder_1kg",
+      "name": "Coconut Powder 1kg",
+      "name_hi": "नारियल पाउडर",
+      "category": "staples",
+      "mrp": 100.0,
+      "avg_purchase_price": 90.0,
+      "unit": "kg",
+      "reorder_point": 5,
+      "typical_daily_sales": 1,
+      "festival_boost": {
+        "holi": 4.0,
+        "ganesh_chaturthi": 2.5
+      }
+    },
+    {
+      "sku_id": "ghee_1l",
+      "name": "Pure Desi Ghee 1L",
+      "name_hi": "देसी घी",
+      "category": "dairy",
+      "mrp": 700.0,
+      "avg_purchase_price": 650.0,
+      "unit": "bottle",
+      "reorder_point": 3,
+      "typical_daily_sales": 2,
+      "festival_boost": {
+        "holi": 3.0,
+        "diwali": 4.0
+      }
+    },
+    {
+      "sku_id": "gulal_packet",
+      "name": "Gulal Color Powder Packet",
+      "name_hi": "गुलाल",
+      "category": "colors",
+      "mrp": 20.0,
+      "avg_purchase_price": 15.0,
+      "unit": "packet",
+      "reorder_point": 20,
+      "typical_daily_sales": 0,
+      "festival_boost": {
+        "holi": 10.0
+      }
+    },
+    {
+      "sku_id": "water_gun",
+      "name": "Plastic Water Gun",
+      "name_hi": "पानी की पिचकारी",
+      "category": "colors",
+      "mrp": 60.0,
+      "avg_purchase_price": 50.0,
+      "unit": "piece",
+      "reorder_point": 10,
+      "typical_daily_sales": 0,
+      "festival_boost": {
+        "holi": 10.0
+      }
+    },
+    {
+      "sku_id": "balloons_pack",
+      "name": "Water Balloons Pack (50 pcs)",
+      "name_hi": "पानी के गुब्बारे",
+      "category": "colors",
+      "mrp": 40.0,
+      "avg_purchase_price": 30.0,
+      "unit": "pack",
+      "reorder_point": 10,
+      "typical_daily_sales": 0,
+      "festival_boost": {
+        "holi": 10.0
+      }
+    },
+    {
+      "sku_id": "namkeen_1kg",
+      "name": "Mixed Namkeen 1kg",
+      "name_hi": "नमकीन",
+      "category": "snacks",
+      "mrp": 180.0,
+      "avg_purchase_price": 150.0,
+      "unit": "kg",
+      "reorder_point": 5,
+      "typical_daily_sales": 3,
+      "festival_boost": {
+        "holi": 2.5,
+        "diwali": 3.0
+      }
+    },
+    {
+      "sku_id": "chips_party",
+      "name": "Lays Party Pack 200g",
+      "name_hi": "पार्टी पैक चिप्स",
+      "category": "snacks",
+      "mrp": 100.0,
+      "avg_purchase_price": 85.0,
+      "unit": "packet",
+      "reorder_point": 10,
+      "typical_daily_sales": 4,
+      "festival_boost": {
+        "holi": 2.5
+      }
+    },
+    {
+      "sku_id": "soft_drink_2l",
+      "name": "Pepsi 2L Bottle",
+      "name_hi": "पेप्सी 2 लीटर",
+      "category": "beverages",
+      "mrp": 90.0,
+      "avg_purchase_price": 75.0,
+      "unit": "bottle",
+      "reorder_point": 12,
+      "typical_daily_sales": 5,
+      "festival_boost": {
+        "holi": 2.0
+      }
     }
   ]
 }

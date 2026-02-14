@@ -6,6 +6,7 @@ Handles text, image, and voice message processing
 from fastapi import APIRouter, HTTPException, BackgroundTasks
 from loguru import logger
 from datetime import datetime
+from pathlib import Path
 import uuid
 
 from models.message import MessageInput, MessageResponse, ErrorResponse
@@ -71,6 +72,7 @@ async def process_message_background(
 
         # Process based on message type
         if message.message_type == "text":
+            # ====== TEXT QUERY FLOW (with automatic momentum detection) ======
             # Send reasoning step
             await ws_manager.send_reasoning_step(
                 store_id,
@@ -79,13 +81,50 @@ async def process_message_background(
                 {"query": message.content[:100]}
             )
 
-            # Process with Gemini
+            # Load sales history for momentum detection
+            sales_history_path = Path(settings.STORE_DATA_PATH).parent / "sales_history.json"
+            with open(sales_history_path, "r") as f:
+                sales_history = json.load(f)
+
+            # Add sales history to context for Gemini to check momentum
+            store_context["sales_history"] = sales_history
+
+            # Process with Gemini (it will auto-detect momentum)
             response = await gemini_service.process_text_query(
                 message.content,
                 store_context
             )
 
-            # Send response
+            # Stream reasoning steps if Gemini detected momentum
+            if response.structured_data.get("reasoning_steps"):
+                for step in response.structured_data["reasoning_steps"]:
+                    # Handle both dict and object formats
+                    if isinstance(step, dict):
+                        step_data = step
+                    else:
+                        step_data = {
+                            "step_type": getattr(step, "step_type", "ANALYSIS"),
+                            "description": getattr(step, "description", ""),
+                            "details": getattr(step, "details", {})
+                        }
+
+                    await ws_manager.send_message(
+                        store_id,
+                        {
+                            "event": "reasoning_step",
+                            "data": {
+                                "step_number": step_data.get("step_number"),
+                                "step_type": step_data.get("step_type"),
+                                "icon": step_data.get("icon", "💡"),
+                                "title": step_data.get("title", ""),
+                                "description": step_data.get("description", ""),
+                                "details": step_data.get("details", {})
+                            },
+                            "timestamp": datetime.now().isoformat()
+                        }
+                    )
+
+            # Send chat response
             await ws_manager.send_chat_message(
                 store_id,
                 response.message_to_owner,

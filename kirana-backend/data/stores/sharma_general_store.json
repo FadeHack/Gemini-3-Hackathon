@@ -152,6 +152,13 @@
       "today_received": 0,
       "today_revenue": 140.0,
       "status": "healthy"
+    },
+    "coconut_powder_1kg": {
+      "current_stock": 5,
+      "today_sold": 0,
+      "today_received": 0,
+      "today_revenue": 0.0,
+      "status": "healthy"
     }
   },
 

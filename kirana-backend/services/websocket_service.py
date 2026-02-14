@@ -53,7 +53,7 @@ class WebSocketManager:
         await self.send_event(
             store_id,
             WebSocketEvent(
-                event_type=WebSocketEventType.CONNECTION_ESTABLISHED,
+                event=WebSocketEventType.CONNECTION_ESTABLISHED.value,
                 timestamp=datetime.now().isoformat(),
                 data={
                     "store_id": store_id,
@@ -114,7 +114,7 @@ class WebSocketManager:
             try:
                 await connection.send_text(event_json)
                 logger.debug(
-                    f"Sent {event.event_type} to store={store_id}"
+                    f"Sent {event.event} to store={store_id}"
                 )
             except Exception as e:
                 logger.error(
@@ -142,12 +142,14 @@ class WebSocketManager:
             icon: Optional emoji icon
         """
         event = ReasoningStepEvent(
-            event_type=WebSocketEventType.REASONING_STEP,
+            event=WebSocketEventType.REASONING_STEP.value,
             timestamp=datetime.now().isoformat(),
-            step_type=step_type,
-            description=description,
-            details=details or {},
-            icon=icon
+            data={
+                "step_type": step_type,
+                "description": description,
+                "details": details or {},
+                "icon": icon
+            }
         )
 
         await self.send_event(store_id, event)
@@ -169,11 +171,13 @@ class WebSocketManager:
             metadata: Additional metadata
         """
         event = ChatMessageEvent(
-            event_type=WebSocketEventType.CHAT_MESSAGE,
+            event=WebSocketEventType.CHAT_MESSAGE.value,
             timestamp=datetime.now().isoformat(),
-            message=message,
-            sender=sender,
-            metadata=metadata or {}
+            data={
+                "message": message,
+                "sender": sender,
+                "metadata": metadata or {}
+            }
         )
 
         await self.send_event(store_id, event)
@@ -201,14 +205,16 @@ class WebSocketManager:
             alerts: Any alerts generated
         """
         event = InventoryUpdateEvent(
-            event_type=WebSocketEventType.INVENTORY_UPDATE,
+            event=WebSocketEventType.INVENTORY_UPDATE.value,
             timestamp=datetime.now().isoformat(),
-            product_id=product_id,
-            old_stock=old_stock,
-            new_stock=new_stock,
-            change=change,
-            transaction_type=transaction_type,
-            alerts=alerts or []
+            data={
+                "product_id": product_id,
+                "old_stock": old_stock,
+                "new_stock": new_stock,
+                "change": change,
+                "transaction_type": transaction_type,
+                "alerts": alerts or []
+            }
         )
 
         await self.send_event(store_id, event)
@@ -226,9 +232,9 @@ class WebSocketManager:
             order_data: Order details
         """
         event = ProcurementOrderEvent(
-            event_type=WebSocketEventType.PROCUREMENT_ORDER,
+            event=WebSocketEventType.PROCUREMENT_ORDER.value,
             timestamp=datetime.now().isoformat(),
-            order=order_data
+            data=order_data
         )
 
         await self.send_event(store_id, event)
@@ -248,7 +254,7 @@ class WebSocketManager:
             error_code: Optional error code
         """
         event = WebSocketEvent(
-            event_type=WebSocketEventType.ERROR,
+            event=WebSocketEventType.ERROR.value,
             timestamp=datetime.now().isoformat(),
             data={
                 "error": error_message,

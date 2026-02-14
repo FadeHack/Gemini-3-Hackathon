@@ -188,11 +188,11 @@ class GeminiService:
         store_context: Dict[str, Any]
     ) -> GeminiResponse:
         """
-        Process general text query
+        Process general text query with automatic momentum detection
 
         Args:
             query: User's text query
-            store_context: Store profile and contextual information
+            store_context: Store profile and contextual information (may include sales_history)
 
         Returns:
             GeminiResponse with answer
@@ -201,8 +201,21 @@ class GeminiService:
             # Get system prompt
             prompt = get_prompt("general_query", store_context)
 
+            # Add sales history for momentum detection if available
+            sales_history_text = ""
+            if "sales_history" in store_context:
+                sales_history = store_context["sales_history"]
+                sales_history_text = "\n\n**SALES HISTORY (for momentum detection):**\n"
+
+                for product_id, product_data in sales_history.get("products", {}).items():
+                    sales_history_text += f"\n{product_id}:\n"
+                    sales_history_text += f"- Typical daily: {product_data['typical_daily_sales']}\n"
+                    sales_history_text += f"- 30-day average: {product_data['stats']['average_daily']}\n"
+                    sales_history_text += f"- Weekend avg: {product_data['stats']['weekend_average']}\n"
+                    sales_history_text += f"- Rainy day avg: {product_data['stats']['rainy_day_average']}\n"
+
             # Combine with user query
-            full_prompt = f"{prompt}\n\nUSER QUERY: {query}"
+            full_prompt = f"{prompt}{sales_history_text}\n\nUSER QUERY: {query}"
 
             # Send to Gemini
             logger.info(f"Processing text query: {query[:50]}...")
@@ -253,6 +266,113 @@ class GeminiService:
         except Exception as e:
             logger.error(f"Error generating forecast explanation: {e}")
             return "Forecast generated successfully. Check details above."
+
+    async def process_momentum_detection(
+        self,
+        user_message: str,
+        store_context: Dict[str, Any],
+        sales_history: Dict[str, Any],
+        current_inventory: Dict[str, Any],
+        product_catalog: List[Dict[str, Any]],
+        weather_forecast: Optional[List[Dict[str, Any]]] = None
+    ) -> GeminiResponse:
+        """
+        Detect sales momentum and recommend smart surplus ordering
+
+        Args:
+            user_message: Owner's message about fast sales
+            store_context: Store profile and contextual information
+            sales_history: 30-day sales history data
+            current_inventory: Current stock levels
+            product_catalog: List of available products
+            weather_forecast: Weather forecast for next 48 hours
+
+        Returns:
+            GeminiResponse with momentum analysis and procurement recommendation
+        """
+        try:
+            # Add time context
+            from datetime import datetime
+            now = datetime.now()
+            store_context["current_day"] = now.strftime("%A")
+            store_context["current_time"] = now.strftime("%I:%M %p")
+            store_context["weather_forecast"] = weather_forecast or []
+
+            # Get system prompt
+            prompt = get_prompt("momentum_detection", store_context)
+
+            # Add sales history context
+            history_text = "\n\n30-DAY SALES HISTORY:\n"
+            for product_id, product_data in sales_history.get("products", {}).items():
+                history_text += f"\n**{product_id}**\n"
+                history_text += f"- Typical daily sales: {product_data['typical_daily_sales']}\n"
+                history_text += f"- Average daily: {product_data['stats']['average_daily']}\n"
+                history_text += f"- Weekend average: {product_data['stats']['weekend_average']}\n"
+                history_text += f"- Weekday average: {product_data['stats']['weekday_average']}\n"
+                history_text += f"- Rainy day average: {product_data['stats']['rainy_day_average']}\n"
+
+                # Include recent 7 days
+                recent_sales = product_data['daily_sales'][-7:]
+                history_text += "- Recent 7 days: "
+                history_text += ", ".join([
+                    f"{s['date'][-5:]}: {s['quantity']}"
+                    for s in recent_sales
+                ])
+                history_text += "\n"
+
+            # Add current inventory context
+            inventory_text = "\n\nCURRENT INVENTORY:\n"
+            for product_id, inv_data in current_inventory.items():
+                inventory_text += (
+                    f"- {product_id}: {inv_data.get('current_stock', 0)} units "
+                    f"(sold today: {inv_data.get('today_sold', 0)})\n"
+                )
+
+            # Add product catalog with prices
+            catalog_text = "\n\nPRODUCT CATALOG (for pricing):\n"
+            for product in product_catalog:
+                catalog_text += (
+                    f"- {product['name']} ({product['sku_id']}): "
+                    f"Purchase ₹{product['avg_purchase_price']}, "
+                    f"MRP ₹{product['mrp']}\n"
+                )
+
+            # Add weather forecast
+            forecast_text = ""
+            if weather_forecast:
+                forecast_text = "\n\nWEATHER FORECAST (Next 48h):\n"
+                for f in weather_forecast[:2]:
+                    forecast_text += (
+                        f"- {f.get('date')}: {f.get('condition', 'clear').title()}, "
+                        f"{f.get('temp_min')}°C - {f.get('temp_max')}°C"
+                    )
+                    if f.get('rain_probability'):
+                        forecast_text += " (Rain likely)"
+                    forecast_text += "\n"
+
+            # Combine all context
+            full_prompt = (
+                prompt +
+                history_text +
+                inventory_text +
+                catalog_text +
+                forecast_text +
+                f"\n\n**OWNER'S MESSAGE:**\n{user_message}"
+            )
+
+            # Send to Gemini
+            logger.info(f"Processing momentum detection: {user_message[:50]}...")
+            response = self.model.generate_content(full_prompt)
+
+            # Parse response
+            result = self._parse_gemini_response(response, "momentum_detection")
+            logger.success("Momentum detection processed successfully")
+
+            return result
+
+        except Exception as e:
+            logger.error(f"Error processing momentum detection: {e}")
+            raise
 
     def _parse_gemini_response(
         self,
