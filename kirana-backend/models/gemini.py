@@ -96,8 +96,15 @@ class GeminiResponse(BaseModel):
         "voice_processing"
     ] = Field(..., description="Type of response")
 
+    raw_response: str = Field(..., description="Raw text response from Gemini")
+
+    structured_data: Dict[str, Any] = Field(
+        default_factory=dict,
+        description="Parsed structured data from response"
+    )
+
     reasoning_steps: List[ReasoningStep] = Field(
-        ...,
+        default_factory=list,
         description="Step-by-step reasoning chain"
     )
 
